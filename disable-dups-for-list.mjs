@@ -50,8 +50,8 @@ try {
     receive_own_postings = 0 WHERE id = ? AND receive_list_copy IS NULL 
     AND receive_own_postings IS NULL`
   for (const p of prefIds) {
-    await connection.execute(updateSql, [p])
-    console.log(`Updated preferences for preferences_id ${p}`)
+    const [result] = await connection.execute(updateSql, [p])
+    result.affectedRows && console.log(`Updated preferences for preferences_id ${p}`)
   }
 
   console.log("Done")
