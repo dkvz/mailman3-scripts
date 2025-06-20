@@ -20,7 +20,7 @@ try {
   )
 
   // CAREFUL THAT WE DON'T CHECK IF THE LIST EXISTS AT ALL
-  //
+
   let prefIds = []
   let addressIds = []
   try {
@@ -44,8 +44,11 @@ try {
     }
   }
 
-  // Applying the change:
-  const updateSql = "UPDATE preferences SET receive_list_copy = 0, receive_own_postings = 0 WHERE id = ?"
+  // Applying the change - Only target preferences that have these 
+  // params set to NULL (default)
+  const updateSql = `UPDATE preferences SET receive_list_copy = 0, 
+    receive_own_postings = 0 WHERE id = ? AND receive_list_copy IS NULL 
+    AND receive_own_postings IS NULL`
   for (const p of prefIds) {
     await connection.execute(updateSql, [p])
     console.log(`Updated preferences for preferences_id ${p}`)
