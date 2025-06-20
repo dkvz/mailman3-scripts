@@ -6,7 +6,7 @@ For some reason that setting is very hard to set and mailman lacks documentation
 
 I'm changing it directly in the database for the mailing list given as the first argument.
 
-Disclaimer: this is quick and dirty stuff.
+Disclaimer: this is quick and dirty stuff - Requires a recent version of Node for using await without async in the script + ES modules
 
 ## Setting up the jobs
 - Copy config.example.mjs as config.mjs
